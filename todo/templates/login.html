@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}
+  Welcome to My Todo App
+{% endblock title %}
+
+{% block contentarea %}
+<section id="home">
+  <div class="container">
+    <h2>Login</h2>
+    
+    {% if messages %}
+      {% for item in messages %}
+        <p style="color:red;font-weight:bold"> {{item}} </p>
+      {% endfor %}
+    {% endif %}
+      
+    <form action="{% url 'login' %}" method="POST">
+      {% csrf_token %}
+      <div>
+        <label for="username">Username</label>
+        <input type="text" name="username" id="username">
+      </div>
+      <div>
+        <label for="password">Password</label>
+        <input type="text" name="password" id="password">
+      </div>
+      <button type="submit">Login</button>
+    </form>
+  </div>
+</section>
+{% endblock contentarea %}

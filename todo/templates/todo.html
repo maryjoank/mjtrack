@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}
+  Welcome to My Todo App
+{% endblock title %}
+
+{% block contentarea %}
+<section id="home">
+  <div class="container">
+    <h2>My Todos</h2>
+    <form action="" method="POST"> 
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Post</button>
+    </form>
+    <hr>
+
+    <h3>Todos</h3>
+    <ul id="todosUL">
+      {{item.task_complete}}
+      {% for item in todos %}
+        {% if item.task_complete %}
+        <li>
+          <span class="completestatus">{{ item.title}}</span>
+          <form id="completeform" action="{% url 'taskcomplete' %}" method="POST">
+            {% csrf_token %}
+            <button>mark complete</button>
+            <input type="hidden" name="todoID" value="{{item.id}}">
+          </form>
+          
+          <form id="completeform" action="{% url 'deletetask' %}" method="POST">
+            {% csrf_token %}
+            <button>delete</button>
+            <input type="hidden" name="todoID" value="{{item.id}}">
+          </form>
+        </li>
+        {% else %}
+        <li><span class="incompletestatus">{{ item.title}}</span> 
+          <form id="completeform" action="{% url 'taskcomplete' %}" method="POST">
+            {% csrf_token %}
+            <button>mark complete</button>
+            <input type="hidden" name="todoID" value="{{item.id}}">
+          </form>
+        </li>  
+        {% endif %}
+        
+      {% endfor %}
+    </ul>
+   
+    
+  </div>
+</section>
+{% endblock contentarea %}
