@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '5vdv_f6bs()$+7%%2a90j(n!#easlw91zom=kvyg0cq2j-jmq@'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['mjtrack.herokuapp.com','localhost']
 
